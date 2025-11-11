@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uz">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yxatdan o'tganlar</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 60px auto;
+            background: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            text-decoration: none;
+            color: white;
+            background-color: #008CBA;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ro'yxatdan o'tgan shaxslar</h1>
+
+        {% if people %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Ism</th>
+                    <th>Familiya</th>
+                    <th>Email</th>
+                    <th>Kompaniya</th>
+                    <th>Telefon</th>
+                    <th>Exist</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in people %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ person.first_name }}</td>
+                    <td>{{ person.last_name }}</td>
+                    <td>{{ person.email }}</td>
+                    <td>{{ person.company }}</td>
+                    <td>{{ person.phone }}</td>
+                    <td>{{ person.exist }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p style="text-align:center;">Hozircha ro'yxatdan o'tganlar yo'q.</p>
+        {% endif %}
+
+        <div style="text-align: center;">
+            <a href="{% url 'index' %}" class="back-link">⬅ Bosh sahifaga qaytish</a>
+        </div>
+    </div>
+</body>
+</html>

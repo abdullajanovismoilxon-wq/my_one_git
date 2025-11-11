@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import main
+from .views import index, register, registered
 urlpatterns = [
-    path('', main, name='main'),
+    path('', index, name='index'),
+    path('register/', register, name='register'),
+    path('registered/', registered, name='registered'),
 ]
